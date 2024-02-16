@@ -1,0 +1,23 @@
+version: '3.1'
+name: tkm-web-app-container
+services:
+  frontend:
+    container_name: tkm-web-app-container
+    image: tkm-web-app
+    #build: .
+    working_dir: /app
+    restart: always
+    expose:
+      - 8080
+    ports:
+      - 80:8080
+  json-server:
+    container_name: tkm-rehber-json-server-container
+    image: tkm-rehber-json-server
+    restart: always
+    links:
+      - frontend
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
